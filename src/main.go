@@ -32,7 +32,7 @@ func main() {
 
 	err := appCtx.Container.Invoke(
 		func(router *gin.Engine, db *mongo.Database) {
-			route.SetupRoutes(router, db, logger)
+			route.Register(router, db, logger)
 			logger.InfoLog("Starting server on :8080")
 			router.Run(":8080")
 		})

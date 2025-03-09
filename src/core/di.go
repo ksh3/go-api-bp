@@ -32,6 +32,7 @@ func NewAppContext() *AppContext {
 		log.Fatalf("failed to provide mongo")
 	}
 
+	// NOTE: Local database
 	// if err := container.Provide(config.NewBadgerDB); err != nil {
 	// 	log.Fatalf("failed to provide badger db: %v", err)
 	// }

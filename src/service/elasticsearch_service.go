@@ -1,11 +1,7 @@
 package service
 
-
-type ElasticsearchService struct {
-
-}
-
+type ElasticsearchService struct{}
 
 func NewElasticsearchService() *ElasticsearchService {
-	return &ElasticsearchService{}
+	panic("Unimplemented")
 }

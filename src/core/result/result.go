@@ -1,5 +1,7 @@
 package result
 
+// NOTE: Either is a type that represents a value of one of two possible types.
+// It is similar to Result, except that the error type is fixed to be an error.
 type Result[T any] struct {
 	Value T
 	Err   error

@@ -36,13 +36,25 @@ const (
 	APIWebhookUserUpdate = "/user_update"
 )
 
-// NOTE: root router
-func SetupRoutes(router *gin.Engine, db *mongo.Database, logger *logging.Logger) {
+// NOTE: Register all routes
+func Register(router *gin.Engine, db *mongo.Database, logger *logging.Logger) {
+	setupSystemRoutes(router)
 	setupWebRoutes(router, logger)
 	setupAPIv1Routes(router, db, logger)
-	setupSystemRoutes(router)
 }
 
+// NOTE: Setup all system routes
+func setupSystemRoutes(router *gin.Engine) {
+	systemGroup := router.Group(APISystemBase)
+	systemGroup.GET(APIHealthCheck, func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{"status": "ok"})
+	})
+	systemGroup.GET(APISystemStatus, func(ctx *gin.Context) {
+		ctx.JSON(http.StatusOK, gin.H{"status": "running", "uptime": "48h"})
+	})
+}
+
+// NOTE: Setup all web routes
 func setupWebRoutes(router *gin.Engine, logger *logging.Logger) {
 	router.GET(WebIndex, func(ctx *gin.Context) {
 		logger.InfoLog("Hello")
@@ -59,16 +71,7 @@ func setupWebRoutes(router *gin.Engine, logger *logging.Logger) {
 	})
 }
 
-func setupSystemRoutes(router *gin.Engine) {
-	systemGroup := router.Group(APISystemBase)
-	systemGroup.GET(APIHealthCheck, func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{"status": "ok"})
-	})
-	systemGroup.GET(APISystemStatus, func(ctx *gin.Context) {
-		ctx.JSON(http.StatusOK, gin.H{"status": "running", "uptime": "48h"})
-	})
-}
-
+// NOTE: Setup all API v1 routes
 func setupAPIv1Routes(router *gin.Engine, db *mongo.Database, logger *logging.Logger) {
 	apiV1 := router.Group(APIV1Base)
 

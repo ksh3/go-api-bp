@@ -1,10 +1,7 @@
 package service
 
-
-type SendgridService struct {
-}
+type SendgridService struct{}
 
 func NewSendgridService() *SendgridService {
-	return &SendgridService{}
+	panic("Unimplemented")
 }
-
