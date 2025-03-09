@@ -1,0 +1,7 @@
+node_modules/*
+debug.log
+dist/*
+.idea
+.vscode
+.badger_data
+.gitkeep
