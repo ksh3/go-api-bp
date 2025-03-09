@@ -3,5 +3,6 @@ debug.log
 dist/*
 .idea
 .vscode
+.mongo_data/*
 .badger_data
 .gitkeep
