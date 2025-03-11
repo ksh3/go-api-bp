@@ -21,7 +21,6 @@ func (e *AppError) Error() string {
 
 // NOTE: Soft errros, code range: 7000-19999
 func ValidationError(appErrorCode int, message string, cauese error) *AppError {
-	// NOTE: code range: 7000-7999
 	return &AppError{
 		Code:       appErrorCode,
 		Message:    message,

@@ -69,7 +69,6 @@ func (t *Translator) loadTranslationFiles(dir string) error {
 				continue
 			}
 
-			// 🔥 既存データとマージ
 			if _, exists := t.translations[lang]; !exists {
 				t.translations[lang] = make(map[string]string)
 			}

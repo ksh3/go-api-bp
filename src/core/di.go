@@ -20,7 +20,20 @@ type AppContext struct {
 func NewAppContext() *AppContext {
 	container := dig.New()
 
-	if err := container.Provide(gin.Default); err != nil {
+	if err := container.Provide(func() *gin.Engine {
+		env := config.GetAppEnv()
+		switch env {
+		case config.ProdEnvKey:
+			gin.SetMode(gin.ReleaseMode)
+		case config.StagingEnvKey:
+			gin.SetMode(gin.TestMode)
+		case config.DevEnvKey:
+			gin.SetMode(gin.DebugMode)
+		default:
+			log.Fatalf("Invalid environment mode")
+		}
+		return gin.Default()
+	}); err != nil {
 		log.Fatalf("failed to provide gin router: %v", err)
 	}
 

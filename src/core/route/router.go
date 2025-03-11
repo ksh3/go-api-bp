@@ -58,7 +58,7 @@ func setupSystemRoutes(router *gin.Engine) {
 func setupWebRoutes(router *gin.Engine, logger *logging.Logger) {
 	router.GET(WebIndex, func(ctx *gin.Context) {
 		logger.InfoLog("Hello")
-		ctx.JSON(http.StatusOK, gin.H{"message": "Hello"})
+		ctx.HTML(http.StatusOK, "index.html", nil)
 	})
 
 	router.GET(WebArticle, func(ctx *gin.Context) {

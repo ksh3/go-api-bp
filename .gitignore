@@ -1,8 +1,10 @@
 mongo_data/*
 badger_data/*
 node_modules/*
-debug.log
 dist/*
 .idea
 .vscode
 .gitkeep
+.DS_Store
+*.log
+!.gitkeep
