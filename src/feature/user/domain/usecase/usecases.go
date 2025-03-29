@@ -10,13 +10,20 @@ type UserUseCase interface {
 }
 
 type DefaultUserUseCase struct {
-	repo domain.UserRepository
+	repo           domain.UserRepository
+	holidayAdapter domain.HolidayAdapter
 }
 
 func (u *DefaultUserUseCase) GetSubscribeUsers() ([]entity.UserEntity, error) {
 	return nil, nil
 }
 
-func NewDefaultUserUseCase(repo domain.UserRepository) UserUseCase {
-	return &DefaultUserUseCase{repo}
+func (u *DefaultUserUseCase) PreReserveAppointment() ([]string, error) {
+	events, _ := u.holidayAdapter.GetEvents()
+	// NOTE: Exclude holidays from the list of dates to be reserved.
+	return events, nil
+}
+
+func NewDefaultUserUseCase(repo domain.UserRepository, adapter domain.HolidayAdapter) UserUseCase {
+	return &DefaultUserUseCase{repo, adapter}
 }

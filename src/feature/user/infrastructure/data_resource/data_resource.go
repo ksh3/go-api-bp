@@ -1,5 +1,5 @@
 // File: data_resource.go
-package resource
+package data_resource
 
 import (
 	"github.com/ksh3/go-api/src/feature/user/infrastructure"

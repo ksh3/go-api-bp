@@ -1,4 +1,4 @@
-package logging
+package core
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"time"
 
 	"github.com/ksh3/go-api/src/core/config"
-	"github.com/ksh3/go-api/src/core/errors"
+	"github.com/ksh3/go-api/src/core/contract"
 )
 
 type LogFormat int
@@ -75,7 +75,7 @@ func (l *Logger) InfoLog(msg string) {
 	l.logToOutput(logMsg)
 }
 
-func (l *Logger) ErrorLog(appErr *errors.AppError, formats ...LogFormat) {
+func (l *Logger) ErrorLog(appErr *contract.AppError, formats ...LogFormat) {
 	format := l.Config.LogFormat
 
 	if len(formats) > 0 {
@@ -91,7 +91,7 @@ func (l *Logger) ErrorLog(appErr *errors.AppError, formats ...LogFormat) {
 	}
 }
 
-func (l *Logger) TextErrorLog(appErr *errors.AppError) {
+func (l *Logger) TextErrorLog(appErr *contract.AppError) {
 	logMsg := fmt.Sprintf(
 		"%s [ERROR] IsCritical: %t Code: %d, Message: %s, Cause: %v",
 		time.Now().Format("2006-01-02 15:04:05"),
@@ -103,7 +103,7 @@ func (l *Logger) TextErrorLog(appErr *errors.AppError) {
 	l.logToOutput(logMsg)
 }
 
-func (l *Logger) JSONErrorLog(appErr *errors.AppError) {
+func (l *Logger) JSONErrorLog(appErr *contract.AppError) {
 	logEntry := map[string]interface{}{
 		"timestamp":  time.Now().Format("2006-01-02 15:04:05"),
 		"level":      "ERROR",

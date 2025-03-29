@@ -10,7 +10,7 @@ import (
 	"go.uber.org/dig"
 
 	"github.com/ksh3/go-api/src/core/config"
-	"github.com/ksh3/go-api/src/service"
+	"github.com/ksh3/go-api/src/feature/user/infrastructure/service"
 )
 
 type AppContext struct {

@@ -1,4 +1,4 @@
-package result
+package contract
 
 // NOTE: Either is a type that represents a value of one of two possible types.
 // It is similar to Result, except that the error type is fixed to be an error.

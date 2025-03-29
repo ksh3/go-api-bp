@@ -1,5 +1,5 @@
 // File: local_resource.go
-package resource
+package data_resource
 
 import (
 	"github.com/dgraph-io/badger/v3"

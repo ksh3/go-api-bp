@@ -1,4 +1,4 @@
-package contracts
+package contract
 
 type Serializable[T any] interface {
 	ToJSON() (string, error)

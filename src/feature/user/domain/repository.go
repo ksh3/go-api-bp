@@ -1,4 +1,3 @@
-// File: repository.go
 package domain
 
 import (

@@ -1,4 +1,4 @@
-package contracts
+package contract
 
 type DTO[T any] interface {
 	Copyble[T]
